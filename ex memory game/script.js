@@ -1,5 +1,6 @@
 const board = document.getElementById('game-board');
 const newBoardBtn = document.getElementById('start');
+const winTxt = document.getElementById('winTxt')
 
 cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2', 
     'pair3-1', 'pair3-2', 'pair4-1', 'pair4-2',
@@ -74,7 +75,8 @@ function innitBoard(cards) {
         newCard.append(cardFront);
         newCard.append(cardBack);
         newCard.addEventListener('click', () => {
-            if (isPaused || newCard.classList.contains('matched')) {
+            if (isPaused || newCard.classList.contains('flipped')
+                 || newCard.classList.contains('matched')) {
                 return;
             }
             newCard.classList.toggle('flipped');
@@ -100,7 +102,7 @@ function innitBoard(cards) {
                     card1 = undefined;
                     card2 = undefined;
                     if (correctPairs === 8) {
-                        alert("You win");
+                        winTxt.textContent = "You win! Congratulations!";
                     }
                 }
             }
@@ -112,7 +114,12 @@ function innitBoard(cards) {
 }
 newBoardBtn.addEventListener('click', () => {
     board.innerHTML = "";
+    card1 = undefined;
+    card2 = undefined;
+    isPaused = false;
+    correctPairs = 0;
     innitBoard(cards);
+    winTxt.textContent = "";
 });
 
 function CompareCards(card1, card2) {
