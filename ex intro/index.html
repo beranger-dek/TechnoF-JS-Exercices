@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonjour !</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <section class="exo">
+        <h2>Exercice 0 : Dire bonjour</h2>
+        
+        <label for="nom">Nom</label>
+        <input type="text" id="nom"><br>
+        <label for="age">Age</label>
+        <input type="number" id="age"><br>
+        <button id="btn" class="btn"> BONJOUR !</button>
+        <p id="bonjour"></p>
+    </section>
+
+    <section class="exo">
+        <h2>Exercice 1 : Le Calculateur d'IMC (BMI)</h2>
+        
+        <label for="height">Votre Taille (en cm) :  </label>
+        <input type="number" id="height"><br>
+        <label for="weight">Votre Poids (en kg) :  </label>
+        <input type="number" id="weight"><br>
+        <button id="btn2" class="btn"> CALCULER L'IMC </button>
+        <p id="bmi-results"></p>
+    </section>
+
+    <section class="exo">
+        <h2>Exercice 2 : Le Calculateur d'Âge Exact</h2>
+        
+        <label for="birthday">Sélectionnez votre date de naissance : </label>
+        <input type="date" id="birthday"><br>
+        <button id="btn3" class="btn"> CALCULER L'ÂGE </button>
+        <p id="exact-age-res"></p>
+    </section>
+
+    <section class="exo">
+        <h2>Exercice 3 : Le contrôleur d'accès (Access Control Checker)</h2>
+        <!-- <h4>Règles d'accès</h4>
+        <ul>
+            <li>Badge inactif → accès refusé, quel que soit le niveau ("Badge désactivé")</li>
+            <li>Niveau d'habilitation inférieur à 3 → accès refusé ("Habilitation insuffisante")</li>
+            <li>Niveau 3 ou 4, en dehors de 8h-20h → accès refusé ("Accès hors horaires autorisés")</li>
+            <li>Niveau 3 ou 4, entre 8h et 20h, badge actif → accès autorisé</li>
+            <li>Niveau 5 (admin) → accès toujours autorisé si badge actif, peu importe l'heure</li>
+        </ul> -->
+        <label for="clearance-level">Niveau d'habilitation (1-5) : </label>
+        <input type="number" min="1" max="5" placeholder="ex : 4" id="clearance-level"><br>
+        <label for="time"> Heure actuelle (0-23) :  </label>
+        <input type="number" min="0" max="23" placeholder="ex : 14" id="time"><br>
+        <label for="active"> Badge actif :</label>
+        <input type="checkbox" id="active"><br>
+        <button id="btn4" class="btn">  VÉRIFIER L'ACCÈS </button>
+        <p id="access-results"></p>
+        <p id="reason"></p>
+
+    </section>
+
+
+    <section class="exo">
+        <h2>Exercice 4 : Le palmarès de films</h2>
+        <ol id="listeFilm" class="liste">
+        </ol>
+        <label for="newFilm">Ajouter un film :</label>
+        <input type="text" id="newFilm"><br>
+        <p id="error"></p>
+        <button class="btn" id="btnAddFilm">AJOUTER</button>
+    </section>
+
+</body>
+</html>
