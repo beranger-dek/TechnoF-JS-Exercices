@@ -1,0 +1,55 @@
+:root{
+    --page-bg: #3D5A80;
+    --border-bg: #293241;
+    --exo-bg: #EDF6F9;
+    --btn-bg: #98C1D9;
+    --del-bg: #EE6C4D;
+    --font:  Arial, Helvetica, sans-serif;
+}
+*{
+    font-family: var(--font);
+}
+body{
+    background-color: var(--page-bg);
+}
+#game-board{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    flex-flow: column;
+    margin: 30px;
+    background-color: var(--btn-bg);
+}
+.card{
+    width: 105px;
+    height: 180px;
+    margin: 2px;
+    background-size: contain;
+}
+.flipped{
+    transform: rotateY(180deg);
+    background-image: url(assets/Card_Back.webp);
+}
+#card1{
+    background-image: url(assets/Albedo_Card.webp);
+}
+#card2{
+    background-image: url(assets/Arlecchino_Card.webp);
+}
+#card3{
+    background-image: url(assets/Collei_Card.webp);
+}
+#card4{
+    background-image: url(assets/Fischl_Card.webp);
+}
+#card5{
+    background-image: url(assets/Hu_Tao_Card.webp);
+}
+#card6{
+    background-image: url(assets/Rosaria_Card.webp);
+}
+#card7{
+    background-image: url(assets/Venti_Card.webp);
+}
+#card8{
+    background-image: url(assets/Yelan_Card.webp);
+}
