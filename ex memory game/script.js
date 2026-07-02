@@ -23,43 +23,62 @@ function innitBoard(cards) {
         switch (card) {
             case 'pair1-1':
             case 'pair1-2':
-                newCard.id = 'card1';
+                newCard.classList.add('card1');
                 break;
             case 'pair2-1':
             case 'pair2-2':
-                newCard.id = 'card2';
+                newCard.classList.add('card2');
                 break;
             case 'pair3-1':
             case 'pair3-2':
-                newCard.id = 'card3';
+                newCard.classList.add('card3');
                 break;
             case 'pair4-1':
             case 'pair4-2':
-                newCard.id = 'card4';
+                newCard.classList.add('card4');
                 break;
             case 'pair5-1':
             case 'pair5-2':
-                newCard.id = 'card5';
+                newCard.classList.add('card5');
                 break;
             case 'pair6-1':
             case 'pair6-2':
-                newCard.id = 'card6';
+                newCard.classList.add('card6');
                 break;
             case 'pair7-1':
             case 'pair7-2':
-                newCard.id = 'card7';
+                newCard.classList.add('card7');
                 break;
             case 'pair8-1':
             case 'pair8-2':
-                newCard.id = 'card8';
+                newCard.classList.add('card8');
                 break;
             default:
                 break;
         }
+        const cardFront = document.createElement('div');
+        cardFront.classList.add('card-front');
+        const cardBack = document.createElement('div');
+        cardBack.classList.add('card-back');
+        newCard.append(cardFront);
+        newCard.append(cardBack);
+        newCard.addEventListener('click', () => {
+            newCard.classList.toggle('flipped');
+            console.log(newCard);
+        })
+
         board.append(newCard);
     });
 }
 newBoardBtn.addEventListener('click', () => {
     board.innerHTML = "";
     innitBoard(cards);
-})
+});
+
+function CompareCards(card1, card2) {
+    if (card1.id === card2.id){
+        console.log("Cards matching!");
+        return;
+    }
+    console.log("not matching");
+}
