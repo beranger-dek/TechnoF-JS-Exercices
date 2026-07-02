@@ -6,6 +6,9 @@ cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2',
     'pair5-1', 'pair5-2', 'pair6-1', 'pair6-2',
     'pair7-1', 'pair7-2', 'pair8-1', 'pair8-2',
 ]
+let card1, card2;
+let isPaused = false;
+let correctPairs = 0;
 
 //Fisher–Yates shuffle
 function shuffleArray(array) {
@@ -24,34 +27,42 @@ function innitBoard(cards) {
             case 'pair1-1':
             case 'pair1-2':
                 newCard.classList.add('card1');
+                newCard.id = 'pair1';
                 break;
             case 'pair2-1':
             case 'pair2-2':
                 newCard.classList.add('card2');
+                newCard.id = 'pair2';
                 break;
             case 'pair3-1':
             case 'pair3-2':
                 newCard.classList.add('card3');
+                newCard.id = 'pair3';
                 break;
             case 'pair4-1':
             case 'pair4-2':
                 newCard.classList.add('card4');
+                newCard.id = 'pair4';
                 break;
             case 'pair5-1':
             case 'pair5-2':
                 newCard.classList.add('card5');
+                newCard.id = 'pair5';
                 break;
             case 'pair6-1':
             case 'pair6-2':
                 newCard.classList.add('card6');
+                newCard.id = 'pair6';
                 break;
             case 'pair7-1':
             case 'pair7-2':
                 newCard.classList.add('card7');
+                newCard.id = 'pair7';
                 break;
             case 'pair8-1':
             case 'pair8-2':
                 newCard.classList.add('card8');
+                newCard.id = 'pair8';
                 break;
             default:
                 break;
@@ -63,8 +74,37 @@ function innitBoard(cards) {
         newCard.append(cardFront);
         newCard.append(cardBack);
         newCard.addEventListener('click', () => {
+            if (isPaused || newCard.classList.contains('matched')) {
+                return;
+            }
             newCard.classList.toggle('flipped');
-            console.log(newCard);
+            if (!card1){
+                card1 = newCard;
+            }else if (!card2) {
+                card2 = newCard;
+                const match = CompareCards(card1,card2);
+                if (!match) {
+                    isPaused = true;
+                    setTimeout(() => {
+                        card1.classList.toggle('flipped');
+                        card2.classList.toggle('flipped');      
+                        card1 = undefined;
+                        card2 = undefined;
+                        isPaused = false;
+                    }, 1000);
+                }
+                if (match) {
+                    correctPairs++;
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    card1 = undefined;
+                    card2 = undefined;
+                    if (correctPairs === 8) {
+                        alert("You win");
+                    }
+                }
+            }
+            console.log(card1,card2);
         })
 
         board.append(newCard);
@@ -78,7 +118,9 @@ newBoardBtn.addEventListener('click', () => {
 function CompareCards(card1, card2) {
     if (card1.id === card2.id){
         console.log("Cards matching!");
-        return;
+        return true;
     }
     console.log("not matching");
+    return false;
 }
+innitBoard(cards);

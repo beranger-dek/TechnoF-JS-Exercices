@@ -1,9 +1,8 @@
 :root{
     --page-bg: #3D5A80;
     --border-bg: #293241;
-    --exo-bg: #EDF6F9;
-    --btn-bg: #98C1D9;
-    --del-bg: #EE6C4D;
+    --container-bg: #98C1D9;
+    --text-color: #EDF6F9;
     --font:  Arial, Helvetica, sans-serif;
 }
 *{
@@ -17,7 +16,8 @@ body{
     grid-template-columns: auto auto auto auto;
     justify-items: center;
     margin: 30px;
-    background-color: var(--btn-bg);
+    background-color: var(--container-bg);
+    border: solid 10px var(--border-bg);
 }
 .card{
     width: 105px;
@@ -74,4 +74,11 @@ body{
 }
 .card8 .card-front{
     background-image: url(assets/Yelan_Card.webp);
+}
+#start{
+    border-radius: 9px;
+    padding: 12px;
+    color: var(--text-color);
+    background-color: var(--border-bg);
+    border-width: 0;
 }
