@@ -10,7 +10,7 @@ cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2',
 ];
 let card1, card2;
 let isPaused = false;
-let correctPairs;
+let correctPairs = 0;
 let tryCount = 0;
 let elapsedSeconds = 0;
 let timerInterval;
@@ -108,13 +108,14 @@ function innitBoard(cards) {
                     card2.classList.add('matched');
                     card1 = undefined;
                     card2 = undefined;
+                    console.log(correctPairs);
                     if (correctPairs === 8) {
-                        winTxt.textContent = `You win! Try : 8/ ${tryCount}.`;
                         stopTimer();
+                        winTxt.textContent = `You win | Time : ${elapsedSeconds}s | Tries : ${tryCount}.`;
+                        timer.textContent = "";
                     }
                 }
             }
-            console.log(card1,card2);
         })
 
         board.append(newCard);
@@ -127,6 +128,7 @@ newBoardBtn.addEventListener('click', () => {
     isPaused = false;
     correctPairs = 0;
     tryCount = 0;
+    stopTimer();
     innitBoard(cards);
     startTimer();
     winTxt.textContent = "";
@@ -143,10 +145,10 @@ function CompareCards(card1, card2) {
 
 function startTimer() {
     elapsedSeconds = 0; // reset in case a previous game left it non-zero
-    timer.textContent = elapsedSeconds; // show 0 immediately, don't wait for first tick
+    timer.textContent = `Timer : ${elapsedSeconds}s`; // show 0 immediately, don't wait for first tick
     timerInterval = setInterval(() => {
         elapsedSeconds++;
-        timer.textContent = `Timer : ${elapsedSeconds}`;
+        timer.textContent = `Timer : ${elapsedSeconds}s`;
     }, 1000);
 }
 function stopTimer() {
