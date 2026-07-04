@@ -16,6 +16,11 @@ nav{
     justify-content: space-around;
     margin: 30px;
 }
+#win-txt{
+    padding: 10px;
+    background-color: var(--border-bg);
+    color: var(--text-color);
+}
 #game-board{
     display: grid;
     grid-template-columns: auto auto auto auto;

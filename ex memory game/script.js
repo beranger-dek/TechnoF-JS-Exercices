@@ -1,6 +1,6 @@
 const board = document.getElementById('game-board');
 const newBoardBtn = document.getElementById('start');
-const winTxt = document.getElementById('winTxt')
+const winTxt = document.getElementById('win-txt')
 
 cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2', 
     'pair3-1', 'pair3-2', 'pair4-1', 'pair4-2',
@@ -131,3 +131,4 @@ function CompareCards(card1, card2) {
     return false;
 }
 innitBoard(cards);
+winTxt.textContent = "You win! Congratulations!";
