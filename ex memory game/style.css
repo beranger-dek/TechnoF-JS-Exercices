@@ -16,10 +16,9 @@ nav{
     justify-content: space-around;
     margin: 30px;
 }
-#win-txt{
-    padding: 10px;
-    background-color: var(--border-bg);
+#win-txt, #timer{
     color: var(--text-color);
+    align-self: center;
 }
 #game-board{
     display: grid;
@@ -37,6 +36,10 @@ nav{
     perspective: 800px;
     transform-style: preserve-3d;
     position: relative;
+    transition: transform 0.2s;
+}
+.card:not(.matched):hover{
+    transform: scale(1.10);
 }
 .card.flipped .card-front{
     transform: rotateY(0deg);

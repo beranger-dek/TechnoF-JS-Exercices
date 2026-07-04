@@ -1,15 +1,16 @@
 const board = document.getElementById('game-board');
 const newBoardBtn = document.getElementById('start');
-const winTxt = document.getElementById('win-txt')
+const winTxt = document.getElementById('win-txt');
+const timer = document.getElementById('timer');
 
 cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2', 
     'pair3-1', 'pair3-2', 'pair4-1', 'pair4-2',
     'pair5-1', 'pair5-2', 'pair6-1', 'pair6-2',
     'pair7-1', 'pair7-2', 'pair8-1', 'pair8-2',
-]
+];
 let card1, card2;
 let isPaused = false;
-let correctPairs = 0;
+let correctPairs, tryCount = 0;
 
 //Fisher–Yates shuffle
 function shuffleArray(array) {
@@ -19,6 +20,7 @@ function shuffleArray(array) {
   }
   return array;
 }
+
 function innitBoard(cards) {
     cards = shuffleArray(cards);
     cards.forEach( function(card, index, cards) {
@@ -84,6 +86,8 @@ function innitBoard(cards) {
                 card1 = newCard;
             }else if (!card2) {
                 card2 = newCard;
+                tryCount++;
+                winTxt.textContent = `Try : ${tryCount}`;
                 const match = CompareCards(card1,card2);
                 if (!match) {
                     isPaused = true;
@@ -102,7 +106,7 @@ function innitBoard(cards) {
                     card1 = undefined;
                     card2 = undefined;
                     if (correctPairs === 8) {
-                        winTxt.textContent = "You win! Congratulations!";
+                        winTxt.textContent = `You win! Try : 8/ ${tryCount}.`;
                     }
                 }
             }
@@ -118,6 +122,7 @@ newBoardBtn.addEventListener('click', () => {
     card2 = undefined;
     isPaused = false;
     correctPairs = 0;
+    tryCount = 0;
     innitBoard(cards);
     winTxt.textContent = "";
 });
@@ -131,4 +136,3 @@ function CompareCards(card1, card2) {
     return false;
 }
 innitBoard(cards);
-winTxt.textContent = "You win! Congratulations!";
