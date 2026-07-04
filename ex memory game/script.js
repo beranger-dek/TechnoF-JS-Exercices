@@ -10,7 +10,10 @@ cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2',
 ];
 let card1, card2;
 let isPaused = false;
-let correctPairs, tryCount = 0;
+let correctPairs;
+let tryCount = 0;
+let elapsedSeconds = 0;
+let timerInterval;
 
 //Fisher–Yates shuffle
 function shuffleArray(array) {
@@ -107,6 +110,7 @@ function innitBoard(cards) {
                     card2 = undefined;
                     if (correctPairs === 8) {
                         winTxt.textContent = `You win! Try : 8/ ${tryCount}.`;
+                        stopTimer();
                     }
                 }
             }
@@ -124,6 +128,7 @@ newBoardBtn.addEventListener('click', () => {
     correctPairs = 0;
     tryCount = 0;
     innitBoard(cards);
+    startTimer();
     winTxt.textContent = "";
 });
 
@@ -135,4 +140,17 @@ function CompareCards(card1, card2) {
     console.log("not matching");
     return false;
 }
+
+function startTimer() {
+    elapsedSeconds = 0; // reset in case a previous game left it non-zero
+    timer.textContent = elapsedSeconds; // show 0 immediately, don't wait for first tick
+    timerInterval = setInterval(() => {
+        elapsedSeconds++;
+        timer.textContent = `Timer : ${elapsedSeconds}`;
+    }, 1000);
+}
+function stopTimer() {
+    clearInterval(timerInterval);
+}
 innitBoard(cards);
+startTimer();
