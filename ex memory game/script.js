@@ -2,6 +2,7 @@ const board = document.getElementById('game-board');
 const newBoardBtn = document.getElementById('start');
 const winTxt = document.getElementById('win-txt');
 const timer = document.getElementById('timer');
+const bestScore = document.getElementById('best-score');
 
 cards = ['pair1-1', 'pair1-2', 'pair2-1', 'pair2-2', 
     'pair3-1', 'pair3-2', 'pair4-1', 'pair4-2',
@@ -14,6 +15,8 @@ let correctPairs = 0;
 let tryCount = 0;
 let elapsedSeconds = 0;
 let timerInterval;
+let localBestTry;
+let localBestTime;
 
 //Fisher–Yates shuffle
 function shuffleArray(array) {
@@ -112,6 +115,18 @@ function innitBoard(cards) {
                     if (correctPairs === 8) {
                         stopTimer();
                         winTxt.textContent = `You win | Time : ${elapsedSeconds}s | Tries : ${tryCount}.`;
+                        if (localBestTime && localBestTry) {
+                            if (localBestTime > elapsedSeconds) {
+                                localBestTime = elapsedSeconds;
+                            }
+                            if (localBestTry > tryCount) {
+                                localBestTry = tryCount;
+                            }
+                        }else{
+                            localBestTime = elapsedSeconds;
+                            localBestTry = tryCount;
+                        }
+                        bestScore.textContent = `Best ~ Time: ${localBestTime}s | Tries :${localBestTry}`;
                         timer.textContent = "";
                     }
                 }
@@ -132,6 +147,7 @@ newBoardBtn.addEventListener('click', () => {
     innitBoard(cards);
     startTimer();
     winTxt.textContent = "";
+    bestScore.textContent = "";
 });
 
 function CompareCards(card1, card2) {

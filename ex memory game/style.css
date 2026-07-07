@@ -16,7 +16,7 @@ nav{
     justify-content: space-around;
     margin: 30px;
 }
-#win-txt, #timer{
+#win-txt, #timer, #best-score{
     color: var(--text-color);
     align-self: center;
 }
