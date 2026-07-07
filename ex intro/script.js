@@ -167,3 +167,18 @@ btnAddFilm.addEventListener('click', () => {
         return;
     }
 });
+
+//ex5
+const clickBtn = document.getElementById('click-btn');
+const resetBtn = document.getElementById('reset-btn');
+const countTxt = document.getElementById('count-txt');
+let compteur = 0;
+
+clickBtn.addEventListener('click', () => {
+    compteur += 1;
+    countTxt.textContent = `Nombre de clics : ${compteur}`;
+});
+resetBtn.addEventListener('click', () => {
+    compteur = 0;
+    countTxt.textContent = `Nombre de clics : ${compteur}`;
+});
